@@ -1,0 +1,45 @@
+name: Build-Test-Package-Deploy (nuget publishing)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      src: './Build-Test-Package-Deploy'
+
+    steps:
+
+    # Echoing SRC (note: $env:src, and other alt. did not worked)
+    - run: echo "SRC is set to:"
+    - run: echo ${{ env.src }}
+
+    - uses: actions/checkout@v1
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+
+    - name: Build
+      run: dotnet build --configuration Release
+      working-directory: ${{ env.src }}
+
+    # Now we can execute tests as well
+    - name: Run unit tests
+      run: dotnet test --configuration Release
+      working-directory: ${{ env.src }}.Tests
+
+    - name: Generate nuget package
+      run: dotnet pack --configuration Release -o nupkg
+      working-directory: ${{ env.src }}
+
+    - name: Publish nuget package
+      run: find . -name *.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+      env:
+        nuget_api_key: ${{ secrets.NUGET_API_KEY }}
+      working-directory: ${{ env.src }}/nupkg

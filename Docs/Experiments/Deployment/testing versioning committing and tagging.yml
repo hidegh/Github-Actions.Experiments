@@ -1,0 +1,52 @@
+name: Testing variable inb-out
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  my-job:
+     
+    runs-on: windows-latest
+
+    env:
+      anyParam: 'any'
+    
+    steps:
+      
+      - uses: actions/checkout@v2
+
+      - name: Increment version
+        run: powershell ./incrementVersion.ps1
+
+      - name: Print out new version from the environment variable we set previously
+        run: powershell Write-Host $env:BUILDING_VERSION
+
+      - name: Print out new version via script
+        run: powershell ./showVersion.ps1 -versionParameter $env:BUILDING_VERSION
+
+      - name: Test to print out something
+        run: powershell Write-Host ${{ secrets.NUGET_API_KEY }}
+
+
+      - name: Fetch status
+        run: git status
+
+      - name: Set identity
+        run: git config user.name "[Build-process]" ; git config user.email "[build@process.id]"
+
+      - name: Commit
+        run: git commit -a -m "Releasing $env:BUILDING_VERSION"
+
+      - name: Push
+        run: git push origin master
+
+      - name: Add version
+        run: git tag -a "PROD-$env:BUILDING_VERSION" -m "Tag for new release"
+
+      - name: Push just the current tag
+        run: git push origin "PROD-$env:BUILDING_VERSION"
+
+      - name: Get latest tag git describe --tags `git rev-list --tags --max-count=1`
+        run: git describe --tags $(git rev-list --tags --max-count=1)
