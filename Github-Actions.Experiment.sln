@@ -7,9 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build-Test-Package-Deploy",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build-Test-Package-Deploy.Tests", "Build-Test-Package-Deploy.Tests\Build-Test-Package-Deploy.Tests.csproj", "{BEB2FB16-BF07-4BC3-878B-2D2377D2CC73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build-Test-Package-Deploy-Dependent", "Build-Test-Package-Deploy-Dependent\Build-Test-Package-Deploy-Dependent.csproj", "{48A7D7CC-A65D-455C-8121-7A9833D4D84F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build-Test-Package-Deploy-Dependent", "Build-Test-Package-Deploy-Dependent\Build-Test-Package-Deploy-Dependent.csproj", "{48A7D7CC-A65D-455C-8121-7A9833D4D84F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{184E4462-CD92-4A42-9F2D-21D51564BA05}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{477298C7-C6EC-4743-AC0B-B838F6AD64AF}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
