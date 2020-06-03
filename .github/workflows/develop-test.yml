@@ -1,0 +1,27 @@
+name: Testing variable inb-out
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+
+  my-job:
+     
+    runs-on: windows-latest
+
+    env:
+      anyParam: 'any'
+    
+    steps:
+      
+      - uses: actions/checkout@v1
+      - name: Run a one-line script that generates output
+        run: powershell .\variable-set.ps1
+
+      - uses: actions/checkout@v1
+      - name: Run a one-line script that grabs previous output
+        run: powershell .\variable-use.ps1
+        env:
+          myInput: $MY_OUTPUT_VALUE
+          mandatory: 'Y'
