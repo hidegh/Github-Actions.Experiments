@@ -1,8 +1,19 @@
-# This will increment  all version numbers inside $file
-$file = "VersionInfo.cs"
-$versionPattern = "(\d+\.){2,3}\d+"
+Write-Host "---"
+Write-Host "Incrementing version"
 
-$version = [version](Get-Content $file | Select-String -Pattern $versionPattern | Select -First 1 | ForEach-Object{ $_.Matches.Value })
+$file = "Directory.Build.props"
+$xml = [xml](Get-Content $file)
+
+$version = [version] $xml.Project.PropertyGroup.Version
+Write-Host "From: $version"
+
 $newVersion = "{0}.{1}.{2}.{3}" -f $version.Major, $version.Minor, ($version.Build + 1), $version.Revision
+Write-Host "To  : $newVersion"
 
-(Get-Content $file) -replace $versionPattern, $newVersion | Set-Content $file
+$xml.Project.PropertyGroup.Version = $newVersion
+
+$xml.Save($file)
+Write-Host "Changes saved"
+
+echo "::set-env name=BUILDING_VERSION::$newVersion"
+Write-Host "Environment variable: BUILDING_VERSION was set"

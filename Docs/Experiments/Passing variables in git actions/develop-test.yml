@@ -1,0 +1,29 @@
+name: Testing variable inb-out
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  my-job:
+     
+    runs-on: windows-latest
+
+    env:
+      anyParam: 'any'
+    
+    steps:
+      
+      - uses: actions/checkout@v1
+      - name: Run a one-line script that generates output
+        run: powershell ./variable-set.ps1
+
+      - name: Print out previously set variable - 1
+        run: powershell Write-Host $MY_OUTPUT_VALUE
+
+      - name: Print out previously set variable  - 2
+        run: powershell Write-Host env:$MY_OUTPUT_VALUE
+
+      - name: Run a one-line script that grabs previous output
+        run: powershell ./variable-use.ps1 -myInput $env:MY_OUTPUT_VALUE
