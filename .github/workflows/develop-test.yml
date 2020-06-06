@@ -30,7 +30,7 @@ jobs:
 
 
       - name: set identity
-        run: git config --global user.name "[Build-process]" --global user.email "[build@process.id]"
+        run: git config user.name "[Build-process]" ; git config user.email "[build@process.id]"
 
       - name: Commit
         run: git commit -m "Releasing $env:BUILDING_VERSION"
