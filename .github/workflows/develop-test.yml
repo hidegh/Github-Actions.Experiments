@@ -29,11 +29,14 @@ jobs:
         run: powershell Write-Host ${{ secrets.NUGET_API_KEY }}
 
 
+      - name: Fetch status
+        run: git status
+
       - name: Set identity
         run: git config user.name "[Build-process]" ; git config user.email "[build@process.id]"
 
       - name: Commit
-        run: git commit -a -m "Releasing $($env:BUILDING_VERSION)"
+        run: git commit -a -m "Releasing ${{ env:BUILDING_VERSION }}"
 
       - name: Push
         run: git push origin master
