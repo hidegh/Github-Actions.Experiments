@@ -30,7 +30,7 @@ jobs:
 
 
       - name: Commit
-        run: git commit -m "$m"
+        run: git commit -m "Releasing $env:BUILDING_VERSION"
 
       - name: Push
         run: git push origin master
@@ -38,7 +38,7 @@ jobs:
       - name: Add version
         run: git tag -a $env:BUILDING_VERSION -m "new release"
 
-      - name: Push
+      - name: Push just the current tag
         run: git push origin $env:BUILDING_VERSION
 
 
