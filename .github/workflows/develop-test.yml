@@ -30,7 +30,7 @@ jobs:
 
       - name: Test to print out something via env
         env:
-          version: ${{ env:BUILDING_VERSION }}
+          version: $env:BUILDING_VERSION
         run: powershell Write-Host $version
 
       - name: Fetch status
@@ -41,7 +41,7 @@ jobs:
 
       - name: Commit
         env:
-          version: ${{ env:BUILDING_VERSION }}
+          version: $env:BUILDING_VERSION
         run: git commit -a -m "Releasing $version"
 
       - name: Push
@@ -49,12 +49,12 @@ jobs:
 
       - name: Add version
         env:
-          version: ${{ env:BUILDING_VERSION }}
+          version: $env:BUILDING_VERSION
         run: git tag -a "v$version" -m "new release"
 
       - name: Push just the current tag
         env:
-          version: ${ env:BUILDING_VERSION }}
+          version: $env:BUILDING_VERSION
         run: git push origin "v$version"
 
 
