@@ -23,7 +23,7 @@ jobs:
         run: powershell Write-Host $BUILDING_VERSION
 
       - name: Print out previously set variable  - 2
-        run: powershell Write-Host env:$BUILDING_VERSION
+        run: powershell Write-Host $env:BUILDING_VERSION
 
       - name: Run a one-line script that grabs previous output
-        run: powershell ./showVersion.ps1 -versionParameter $env:MY_OUTPUT_VALUE
+        run: powershell ./showVersion.ps1 -versionParameter $env:BUILDING_VERSION
