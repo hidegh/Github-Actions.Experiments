@@ -42,10 +42,10 @@ jobs:
         run: git push origin master
 
       - name: Add version
-        run: git tag -a $env:BUILDING_VERSION -m "new release"
+        run: git tag -a "PROD $env:BUILDING_VERSION" -m "Tag for new release"
 
       - name: Push just the current tag
-        run: git push origin $env:BUILDING_VERSION
+        run: git push origin "PROD $env:BUILDING_VERSION"
 
 
       - name: Get latest tag
