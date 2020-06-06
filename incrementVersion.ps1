@@ -4,6 +4,8 @@ Write-Host "Incrementing version"
 $file = "Directory.Build.props"
 $xml = [xml](Get-Content $file)
 
+Write-Host $xml
+
 $version = [version] $xml.Project.PropertyGroup.Version
 Write-Host "From: $version"
 
