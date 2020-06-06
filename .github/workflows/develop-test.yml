@@ -19,10 +19,7 @@ jobs:
       - name: Run a one-line script that generates output
         run: powershell ./incrementVersion.ps1
 
-      - name: Print out previously set variable - 1
-        run: powershell Write-Host $BUILDING_VERSION
-
-      - name: Print out previously set variable  - 2
+      - name: Print out previously set env. variable
         run: powershell Write-Host $env:BUILDING_VERSION
 
       - name: Run a one-line script that grabs previous output
