@@ -24,3 +24,17 @@ jobs:
 
       - name: Run a one-line script that grabs previous output
         run: powershell ./showVersion.ps1 -versionParameter $env:BUILDING_VERSION
+
+      - name: Test to print out something
+        run: powershell Write-Host ${{ secrets.NUGET_API_KEY }}
+
+      - name: Test to print out something
+        run: powershell Write-Host $secrets.NUGET_API_KEY
+
+      - name: Test to print out something
+        run: powershell Write-Host secrets.NUGET_API_KEY
+
+      - uses: hole19/git-tag-action@master
+        env:
+          TAG: v$env:BUILDING_VERSION
+          GITHUB_TOKEN: ${{ secrets.NUGET_API_KEY }}
