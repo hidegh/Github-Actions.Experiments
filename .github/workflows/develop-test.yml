@@ -28,34 +28,24 @@ jobs:
       - name: Test to print out something
         run: powershell Write-Host ${{ secrets.NUGET_API_KEY }}
 
-      - name: Test to print out something via env
-        env:
-          version: $env:BUILDING_VERSION
-        run: powershell Write-Host $version
 
       - name: Fetch status
         run: git status
 
-      - name: Set identity
-        run: git config user.name "[Build-process]" ; git config user.email "[build@process.id]"
+#      - name: Set identity
+#        run: git config user.name "[Build-process]" ; git config user.email "[build@process.id]"
 
       - name: Commit
-        env:
-          version: $env:BUILDING_VERSION
-        run: git commit -a -m "Releasing $version"
+        run: git commit -a -m "Releasing $env:BUILDING_VERSION"
 
       - name: Push
         run: git push origin master
 
       - name: Add version
-        env:
-          version: $env:BUILDING_VERSION
-        run: git tag -a "v$version" -m "new release"
+        run: git tag -a $env:BUILDING_VERSION -m "new release"
 
       - name: Push just the current tag
-        env:
-          version: $env:BUILDING_VERSION
-        run: git push origin "v$version"
+        run: git push origin $env:BUILDING_VERSION
 
 
       - name: Get latest tag
