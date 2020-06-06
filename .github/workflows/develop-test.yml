@@ -38,16 +38,20 @@ jobs:
       - name: Commit
         env:
           version: ${ env:BUILDING_VERSION }}
-        run: git commit -a -m "Releasing $VERSION"
+        run: git commit -a -m "Releasing $version"
 
       - name: Push
         run: git push origin master
 
       - name: Add version
-        run: git tag -a $env:BUILDING_VERSION -m "new release"
+        env:
+          version: ${ env:BUILDING_VERSION }}
+        run: git tag -a "v$version" -m "new release"
 
       - name: Push just the current tag
-        run: git push origin $env:BUILDING_VERSION
+        env:
+          version: ${ env:BUILDING_VERSION }}
+        run: git push origin "v$version"
 
 
       - name: Get latest tag
