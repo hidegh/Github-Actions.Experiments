@@ -28,6 +28,20 @@ jobs:
       - name: Test to print out something
         run: powershell Write-Host ${{ secrets.NUGET_API_KEY }}
 
+
+      - name: Commit
+        run: git commit -m "$m"
+
+      - name: Push
+        run: git push origin master
+
+      - name: Add version
+        run: git tag -a $env:BUILDING_VERSION -m "new release"
+
+      - name: Push
+        run: git push origin $env:BUILDING_VERSION
+
+
       - name: Get latest tag
         run: git describe --tags `git rev-list --tags --max-count=1`
 
