@@ -28,11 +28,16 @@ jobs:
       - name: Test to print out something
         run: powershell Write-Host ${{ secrets.NUGET_API_KEY }}
 
+      - name: Get latest tag
+        run: git describe --tags `git rev-list --tags --max-count=1`
+
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.17.2
         env:
           GITHUB_TOKEN: ${{ secrets.NUGET_API_KEY }}
           WITH_V: true
-          CUSTOM_TAG: $env:BUILDING_VERSION
+          CUSTOM_TAG: ${{ env:BUILDING_VERSION }}
+
+
 
           
