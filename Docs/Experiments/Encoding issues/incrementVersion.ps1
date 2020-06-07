@@ -2,9 +2,7 @@ Write-Host "---"
 Write-Host "Incrementing version"
 
 $file = "Directory.Build.props"
-# $xml = [xml](Get-Content $file -encoding UTF8)
-$xml = new-object System.Xml.XmlDocument
-$xml.load($file)
+$xml = [xml](Get-Content $file -encoding UTF8)
 
 Write-Host $xml.Project.PropertyGroup.Copyright
 
@@ -15,7 +13,15 @@ $newVersion = "{0}.{1}.{2}.{3}" -f $version.Major, $version.Minor, ($version.Bui
 Write-Host "To  : $newVersion"
 
 $xml.Project.PropertyGroup.Version = $newVersion
-$xml.Save($file)
+
+# Need to ensure UTF8 save
+# $xml.Save($file)
+
+#$utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+#$sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+#$xml.Save($sw)
+#$sw.Close()
+
 Write-Host "Changes saved"
 
 echo "::set-env name=BUILDING_VERSION::$newVersion"
