@@ -1,3 +1,24 @@
+checkout
+
+increment version
+create tag
+
+build
+test
+package
+
+commit
+write and push tag
+
+publish package
+
+
+
+
+
+
+
+
 
 
     - name: Publish nuget package
