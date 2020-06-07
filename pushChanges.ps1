@@ -6,46 +6,33 @@ param(
   [string]$tag
 )
 
-$env:GIT_REDIRECT_STDERR = '2>&1'
+#$env:GIT_REDIRECT_STDERR = '2>&1'
 
-Write-Host "---"
+Write-Host "`n---"
 Write-Host "Get git status"
 git status
 
-Write-Host "---"
+Write-Host "`n---"
 Write-Host "Set git identity"
 git config user.name "[Build-process]"
 git config user.email "[build@process.id]"
 
-Write-Host "---"
+Write-Host "`n---"
 Write-Host "Commit"
-git commit -a -m "Releasing $versionParameter" 2>&1
-if (-not $?) { 
-return -1
-} else {
-Write-Host "OK"
-}
-#if (-not $?) { throw } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE; throw; }
+git commit -a -m "Releasing $versionParameter"
+if (-not $?) { exit -1; } # if ($LASTEXITCODE -ne 0) { exit -1; }
 
-# Write-Host "---"
+# Write-Host "`n---"
 # Write-Host "Push"
-# $result = git push origin master 2>&1
-# Write-Host "a"
-# Write-Host $_
-# Write-Host "b"
-# if (-not $?) { Write-Error $result; throw; }
-# #if ($LASTEXITCODE -ne 0) { Write-Error "cccc"; throw; }
+git push origin master 2>&1
+if (-not $?) { exit -1; } 
 
-# #if (-not $?) { throw }
+Write-Host "`n---"
+Write-Host "Add tag"
+git tag -a $tag -m "Tag for new release"
+if (-not $?) { exit -1; } 
 
-# Write-Host "---"
-# Write-Host "Add tag"
-# $result = git tag -a $tag -m "Tag for new release" 2>&1
-# if (-not $?) { Write-Error $result; throw; }
-# #if (-not $?) { throw }
-
-# Write-Host "---"
-# Write-Host "Push tag"
-# $result = git push origin $tag 2>&1
-# if (-not $?) { Write-Error $result; throw; }
-# #if (-not $?) { throw }
+Write-Host "`n---"
+Write-Host "Push tag"
+git push origin $tag 2>&1
+if (-not $?) { exit -1; } 
