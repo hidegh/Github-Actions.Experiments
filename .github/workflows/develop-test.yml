@@ -49,8 +49,8 @@ jobs:
         run: git push origin "PROD-$env:BUILDING_VERSION"
 
 
-      - name: Get git help
-        run: git rev-list -help
+      #- name: Get git help
+      #  run: git rev-list -help
 
-      - name: Get latest tag
-        run: git describe --tags `git rev-list --tags --max-count=1`
+      - name: Get latest tag git describe --tags `git rev-list --tags --max-count=1`
+        run: git describe --tags | git rev-list --tags --max-count=1
