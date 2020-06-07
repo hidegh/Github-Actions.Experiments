@@ -21,11 +21,21 @@ git commit -a -m "Releasing $versionParameter"
 
 Write-Host "---"
 Write-Host "Push"
-git push origin master
+try {
+  git push origin master
+} catch {
+  Write-Error $_
+  Write-Error $_ScriptStackTrace
+}
 
 Write-Host "---"
 Write-Host "Add tag"
-git tag -a $tag -m "Tag for new release"
+try {
+  git tag -a $tag -m "Tag for new release"
+} catch {
+  Write-Error $_
+  Write-Error $_ScriptStackTrace
+}
 
 Write-Host "---"
 Write-Host "Push tag"
