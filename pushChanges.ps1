@@ -22,7 +22,8 @@ if (-not $?) {
         throw "Error with git push!"
     }
 
-#if ($LASTEXITCODE <> 0) Write-Error "aaa"
+if ($LASTEXITCODE -ne 0) { Write-Error "aaa" }
+
 
 Write-Host "---"
 Write-Host "Push"
@@ -32,7 +33,7 @@ try {
   Write-Error $_
   Write-Error $_ScriptStackTrace
 }
-#if ($LASTEXITCODE <> 0) Write-Error "bbb"
+if ($LASTEXITCODE -ne 0) { Write-Error bbb}
 
 Write-Host "---"
 Write-Host "Add tag"
@@ -42,11 +43,9 @@ try {
   Write-Error $_
   Write-Error $_ScriptStackTrace
 }
-if (-not $?) {
-        throw $_
-    }
+if (-not $?) { throw $_ }
 
-#if ($LASTEXITCODE <> 0) Write-Error "ccc"
+if ($LASTEXITCODE -ne 0) { Write-Error "ccc" }
 
 Write-Host "---"
 Write-Host "Push tag"
