@@ -26,6 +26,8 @@ git push origin master
 Write-Host "a"
 Write-Host $_
 Write-Host "b"
+if ($LASTEXITCODE -ne 0) { Write-Error "cccc" }
+
 if (-not $?) { throw $_ }
 
 Write-Host "---"
