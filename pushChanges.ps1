@@ -6,7 +6,7 @@ param(
   [string]$tag
 )
 
-#$env:GIT_REDIRECT_STDERR = '2>&1'
+$env:GIT_REDIRECT_STDERR = '2>&1'
 
 Write-Host "`n---"
 Write-Host "Get git status"
