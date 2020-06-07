@@ -29,7 +29,6 @@ jobs:
       - name: Push version changes and new tag
         run: powershell ./pushChanges.ps1 -versionParameter $env:BUILDING_VERSION -tag "PROD-$env:BUILDING_VERSION"
 
-
       # - name: Fetch status
         # run: git status
 
