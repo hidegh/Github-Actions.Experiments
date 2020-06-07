@@ -53,4 +53,4 @@ jobs:
       #  run: git rev-list -help
 
       - name: Get latest tag git describe --tags `git rev-list --tags --max-count=1` - ` needs encoding
-        run: git describe --tags ``git rev-list --tags --max-count=1``
+        run: git describe --tags $(git rev-list --tags --max-count=1)
