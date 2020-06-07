@@ -28,16 +28,9 @@ if (-not $?) { Write-Host "ERROR!"; exit -1; }
 Write-Host "`n---"
 Write-Host "Push"
 git push origin 2>&1 | Write-Host
-
-if ($LASTEXITCODE -ne 0) { Write-Host "ERROR1!"; }
-if (-not $?) { Write-Host "ERROR2!"; }
-
-Write-Host $LASTEXITCODE
-Write-Host $?
-Write-Host $_
-
-
-if (-not $?) { Write-Host "ERROR!"; exit -1; } 
+# The generic check-error code does not worked with push, raised error even on success!
+# if (-not $?) { Write-Host "ERROR!"; exit -1; } 
+if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; }
 
 Write-Host "`n---"
 Write-Host "Add tag"
@@ -47,11 +40,4 @@ if (-not $?) { Write-Host "ERROR!"; exit -1; }
 Write-Host "`n---"
 Write-Host "Push tag"
 git push origin master $tag 2>&1 | Write-Host
-# The generic check-error code does not worked with push, raised error even on success!
-# if (-not $?) { Write-Host "ERROR!"; exit -1; } 
-if ($LASTEXITCODE -ne 0) { Write-Host "ERROR1!"; }
-if (-not $?) { Write-Host "ERROR2!"; }
-
-Write-Host $LASTEXITCODE
-Write-Host $?
-Write-Host $_
+if (-not $?) { Write-Host "ERROR!"; exit -1; } 
