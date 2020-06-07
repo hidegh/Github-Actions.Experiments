@@ -6,8 +6,13 @@ param(
   [string]$tag
 )
 
+#
+# SCRIPT vs. yaml
+# ---------------
+#
 # PRO:
 # - single file to manage all the stuff
+#
 # CON:
 # - steps skipped wont' show up on the workflow UI
 # - weird error handling in some cases
