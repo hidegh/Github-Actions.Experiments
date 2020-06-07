@@ -23,6 +23,9 @@ if (-not $?) { throw $_ } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE
 Write-Host "---"
 Write-Host "Push"
 git push origin master
+Write-Host "a"
+Write-Host $_
+Write-Host "b"
 if (-not $?) { throw $_ }
 
 Write-Host "---"
