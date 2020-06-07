@@ -1,8 +1,8 @@
 param(
-  [Parameter(Mandatory=$false)]
+  [Parameter(Mandatory=$true)]
   [string]$versionParameter
   ,
-  [Parameter(Mandatory=$false)]
+  [Parameter(Mandatory=$true)]
   [string]$tag
 )
 
