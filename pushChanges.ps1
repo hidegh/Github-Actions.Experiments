@@ -6,8 +6,11 @@ param(
   [string]$tag
 )
 
-#PRO: single file to manage all the stuff
-#CON: steps skipped wont' show up on the workflow UI
+# PRO:
+# - single file to manage all the stuff
+# CON:
+# - steps skipped wont' show up on the workflow UI
+# - weird error handling in some cases
 
 if ([string]::IsNullOrWhiteSpace($tag)) { $tag = $versionParameter; }
 
