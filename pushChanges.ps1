@@ -10,12 +10,12 @@ $env:GIT_REDIRECT_STDERR = '2>&1'
 
 Write-Host "---"
 Write-Host "Get git status"
-$result = git status
+git status
 
 Write-Host "---"
 Write-Host "Set git identity"
-$result = git config user.name "[Build-process]"
-$result = git config user.email "[build@process.id]"
+git config user.name "[Build-process]"
+git config user.email "[build@process.id]"
 
 Write-Host "---"
 Write-Host "Commit"
