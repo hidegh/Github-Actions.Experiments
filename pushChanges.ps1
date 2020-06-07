@@ -43,7 +43,7 @@ try {
   Write-Error $_ScriptStackTrace
 }
 if (-not $?) {
-        throw $?
+        throw $_
     }
 
 #if ($LASTEXITCODE <> 0) Write-Error "ccc"
