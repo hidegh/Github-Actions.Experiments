@@ -1,7 +1,7 @@
-Write-Host "---"
-Write-Host "Incrementing version"
-
 $file = "Directory.Build.props"
+
+Write-Host "---"
+Write-Host "Incrementing version, changing: $($file), setting into: $env:BUILDING_VERSION"
 
 $xml = new-object System.Xml.XmlDocument
 $xml.load($file)
