@@ -22,8 +22,8 @@ Write-Host "Commit"
 git commit -a -m "Releasing $versionParameter"
 if (-not $?) { exit -1; } # if ($LASTEXITCODE -ne 0) { exit -1; }
 
-# Write-Host "`n---"
-# Write-Host "Push"
+Write-Host "`n---"
+Write-Host "Push"
 git push origin master
 if (-not $?) { exit -1; } 
 
