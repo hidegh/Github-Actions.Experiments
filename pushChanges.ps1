@@ -6,7 +6,10 @@ param(
   [string]$tag
 )
 
-#
+#PRO:
+#- single file to manage all the stuff
+#CON:
+#- steps skipped wont' show up on the workflow UI
 
 Write-Host "`n---"
 Write-Host "Get git status"
