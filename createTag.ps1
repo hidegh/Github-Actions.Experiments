@@ -3,23 +3,40 @@ param(
   [string]$versionParameter
   ,
   [Parameter(Mandatory=$true)]
-  [bool]$useBuildVersion
+  [ValidateSet("Y", "N")]
+  [string]$useBuildVersion
   ,
   [Parameter(Mandatory=$false)]
   [string]$tagPrefix
 )
 
-if ($useBuildVersion) {
+Write-Host "---"
+Write-Host "Calculating new tag"
+Write-Host "Build version    : $versionParameter"
+Write-Host "Use build version: $useBuildVersion"
+Write-Host "Tag prefix       : $tagPrefix"
+
+if ($useBuildVersion -eq "Y") {
+  
   Write-Host "Using version number for tagging"
+  $newVersionTag = $versionParameter;
   
 } else {
   
   Write-Host "Getting previous tag"
   
-  #tod - what ifno tag avail?
-  
-  if (![string]::IsNullOrWhiteSpace($tagPrefix))
-    $newVersionTag = $tagPrefix + $newVersionTag
+  $result = git describe --tags 2>&1 $(git rev-list --tags --max-count=1)
+  if (-not $?) { 
+    Write-Host "Error: $result"
+  } else { 
+    Write-Host "Last tag found: $result"; 
+
+  }
+
+}
+
+if (![string]::IsNullOrWhiteSpace($tagPrefix)) {
+  $newVersionTag = $tagPrefix + $newVersionTag
 }
 
 Write-Host "New TAG: $newVersionTag"
