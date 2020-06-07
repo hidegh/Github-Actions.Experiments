@@ -20,7 +20,7 @@ git config user.email "[build@process.id]"
 Write-Host "---"
 Write-Host "Commit"
 git commit -a -m "Releasing $versionParameter"
-if (-not $?) { throw } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE; throw; }
+#if (-not $?) { throw } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE; throw; }
 
 Write-Host "---"
 Write-Host "Push"
@@ -28,7 +28,7 @@ git push origin master
 Write-Host "a"
 Write-Host $_
 Write-Host "b"
-if ($LASTEXITCODE -ne 0) { Write-Error "cccc"; throw; }
+#if ($LASTEXITCODE -ne 0) { Write-Error "cccc"; throw; }
 
 #if (-not $?) { throw }
 
