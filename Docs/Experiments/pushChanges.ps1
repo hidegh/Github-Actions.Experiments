@@ -15,7 +15,7 @@ param(
 #
 # CON:
 # - steps skipped wont' show up on the workflow UI
-# - weird error handling in some cases
+# - weird error handling in some cases see: https://stackoverflow.com/questions/10666101/lastexitcode-0-but-false-in-powershell-redirecting-stderr-to-stdout-gives#answer-59376457
 
 if ([string]::IsNullOrWhiteSpace($tag)) { $tag = $versionParameter; }
 
