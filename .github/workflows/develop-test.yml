@@ -16,13 +16,14 @@ jobs:
     steps:
       
       - uses: actions/checkout@v2
-      - name: Run a one-line script that generates output
+
+      - name: Increment version
         run: powershell ./incrementVersion.ps1
 
-      - name: Print out previously set env. variable
+      - name: Print out new version from the environment variable we set previously
         run: powershell Write-Host $env:BUILDING_VERSION
 
-      - name: Run a one-line script that grabs previous output
+      - name: Print out new version via script
         run: powershell ./showVersion.ps1 -versionParameter $env:BUILDING_VERSION
 
       - name: Test to print out something
@@ -48,16 +49,8 @@ jobs:
         run: git push origin "PROD-$env:BUILDING_VERSION"
 
 
+      - name: Get git help
+        run: git rev-list -help
+
       - name: Get latest tag
         run: git describe --tags `git rev-list --tags --max-count=1`
-
-#      - name: Bump version and push tag
-#        uses: anothrNick/github-tag-action@1.17.2
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.NUGET_API_KEY }}
-#          WITH_V: true
-#          CUSTOM_TAG: $env:BUILDING_VERSION
-
-
-
-          
