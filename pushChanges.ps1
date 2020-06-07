@@ -26,6 +26,7 @@ try {
 } catch {
   Write-Error $_
   Write-Error $_ScriptStackTrace
+  throw
 }
 
 Write-Host "---"
@@ -35,6 +36,7 @@ try {
 } catch {
   Write-Error $_
   Write-Error $_ScriptStackTrace
+  throw
 }
 
 Write-Host "---"
