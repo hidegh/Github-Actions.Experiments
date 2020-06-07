@@ -1,8 +1,8 @@
 param(
-  [Parameter(Mandatory=$true)]
+  [Parameter(Mandatory=$false)]
   [string]$versionParameter
   ,
-  [Parameter(Mandatory=$true)]
+  [Parameter(Mandatory=$false)]
   [string]$tag
 )
 
@@ -23,25 +23,25 @@ $result = git commit -a -m "Releasing $versionParameter" 2>&1
 if (-not $?) { Write-Error $result; throw; }
 #if (-not $?) { throw } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE; throw; }
 
-Write-Host "---"
-Write-Host "Push"
-$result = git push origin master 2>&1
-Write-Host "a"
-Write-Host $_
-Write-Host "b"
-if (-not $?) { Write-Error $result; throw; }
-#if ($LASTEXITCODE -ne 0) { Write-Error "cccc"; throw; }
+# Write-Host "---"
+# Write-Host "Push"
+# $result = git push origin master 2>&1
+# Write-Host "a"
+# Write-Host $_
+# Write-Host "b"
+# if (-not $?) { Write-Error $result; throw; }
+# #if ($LASTEXITCODE -ne 0) { Write-Error "cccc"; throw; }
 
-#if (-not $?) { throw }
+# #if (-not $?) { throw }
 
-Write-Host "---"
-Write-Host "Add tag"
-$result = git tag -a $tag -m "Tag for new release" 2>&1
-if (-not $?) { Write-Error $result; throw; }
-#if (-not $?) { throw }
+# Write-Host "---"
+# Write-Host "Add tag"
+# $result = git tag -a $tag -m "Tag for new release" 2>&1
+# if (-not $?) { Write-Error $result; throw; }
+# #if (-not $?) { throw }
 
-Write-Host "---"
-Write-Host "Push tag"
-$result = git push origin $tag 2>&1
-if (-not $?) { Write-Error $result; throw; }
-#if (-not $?) { throw }
+# Write-Host "---"
+# Write-Host "Push tag"
+# $result = git push origin $tag 2>&1
+# if (-not $?) { Write-Error $result; throw; }
+# #if (-not $?) { throw }
