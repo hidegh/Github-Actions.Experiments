@@ -2,12 +2,14 @@ param(
   [Parameter(Mandatory=$true)]
   [string]$versionParameter
   ,
-  [Parameter(Mandatory=$true)]
+  [Parameter(Mandatory=$false)]
   [string]$tag
 )
 
 #PRO: single file to manage all the stuff
 #CON: steps skipped wont' show up on the workflow UI
+
+if ([string]::IsNullOrWhiteSpace($tag)) { $tag = $versionParameter; }
 
 Write-Host "`n---"
 Write-Host "Get git status"
