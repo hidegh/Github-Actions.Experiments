@@ -14,7 +14,7 @@ param(
 Write-Host "`n---"
 Write-Host "Get git status"
 git status 2>&1 | Write-Host
-if (-not $?) { Write-Host "ERROR!"; exit -1; } # if ($LASTEXITCODE -ne 0) { exit -1; }
+if (-not $?) { Write-Host "ERROR!"; exit -1; } # if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
 
 Write-Host "`n---"
 Write-Host "Set git identity"
@@ -40,4 +40,5 @@ if (-not $?) { Write-Host "ERROR!"; exit -1; }
 Write-Host "`n---"
 Write-Host "Push tag"
 git push origin $tag 2>&1 | Write-Host
-if (-not $?) { Write-Host "ERROR!"; exit -1; } 
+# if (-not $?) { Write-Host "ERROR!"; exit -1; } 
+if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
