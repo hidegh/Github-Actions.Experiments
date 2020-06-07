@@ -1,9 +1,9 @@
 param(
   [Parameter(Mandatory=$true)]
-  $versionParameter
+  [string]$versionParameter
   ,
   [Parameter(Mandatory=$true)]
-  $tag
+  [string]$tag
 )
 
 $env:GIT_REDIRECT_STDERR = '2>&1'
