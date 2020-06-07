@@ -28,14 +28,14 @@ Write-Host $_
 Write-Host "b"
 if ($LASTEXITCODE -ne 0) { Write-Error "cccc" }
 
-if (-not $?) { throw }
+#if (-not $?) { throw }
 
 Write-Host "---"
 Write-Host "Add tag"
 git tag -a $tag -m "Tag for new release"
-if (-not $?) { throw }
+#if (-not $?) { throw }
 
 Write-Host "---"
 Write-Host "Push tag"
 git push origin $tag
-if (-not $?) { throw }
+#if (-not $?) { throw }
