@@ -4,7 +4,7 @@ Write-Host "Incrementing version"
 $file = "Directory.Build.props"
 $xml = [xml](Get-Content $file)
 
-Write-Host $xml
+Write-Host $xml.Project.PropertyGroup.Copyright
 
 $version = [version] $xml.Project.PropertyGroup.Version
 Write-Host "From: $version"
@@ -17,10 +17,10 @@ $xml.Project.PropertyGroup.Version = $newVersion
 # Need to ensure UTF8 save
 # $xml.Save($file)
 
-$utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-$sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
-$xml.Save($sw)
-$sw.Close()
+#$utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+#$sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+#$xml.Save($sw)
+#$sw.Close()
 
 Write-Host "Changes saved"
 
