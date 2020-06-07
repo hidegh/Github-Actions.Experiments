@@ -2,7 +2,7 @@ Write-Host "---"
 Write-Host "Incrementing version"
 
 $file = "Directory.Build.props"
-$xml = [xml](Get-Content $file)
+$xml = [xml](Get-Content $file -encoding UTF8)
 
 Write-Host $xml.Project.PropertyGroup.Copyright
 
