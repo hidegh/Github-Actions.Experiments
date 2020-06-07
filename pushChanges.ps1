@@ -6,6 +6,8 @@ param(
   [string]$tag
 )
 
+#
+
 Write-Host "`n---"
 Write-Host "Get git status"
 git status 2>&1 | Write-Host
