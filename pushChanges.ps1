@@ -19,7 +19,7 @@ git config user.email "[build@process.id]"
 
 Write-Host "---"
 Write-Host "Commit"
-$result = git commit -a -m "Releasing $versionParameter" 2>&1
+git commit -a -m "Releasing $versionParameter" 2>&1
 if (-not $?) { Write-Error $result; throw; }
 #if (-not $?) { throw } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE; throw; }
 
