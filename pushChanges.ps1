@@ -42,6 +42,10 @@ try {
   Write-Error $_
   Write-Error $_ScriptStackTrace
 }
+if (-not $?) {
+        throw "Error with git push!"
+    }
+
 #if ($LASTEXITCODE <> 0) Write-Error "ccc"
 
 Write-Host "---"
