@@ -22,7 +22,7 @@ Write-Host "Commit"
 git commit -a -m "Releasing $versionParameter" 2>&1
 if (-not $?) { 
 Write-Host "ERROR1"
-Write-Host $_
+Write-Host $
 Write-Host "ERROR2"
 } else {
 Write-Host "OK"
