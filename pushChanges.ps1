@@ -24,7 +24,7 @@ if (-not $?) { exit -1; } # if ($LASTEXITCODE -ne 0) { exit -1; }
 
 # Write-Host "`n---"
 # Write-Host "Push"
-git push origin master 2>&1
+git push origin master
 if (-not $?) { exit -1; } 
 
 Write-Host "`n---"
@@ -34,5 +34,5 @@ if (-not $?) { exit -1; }
 
 Write-Host "`n---"
 Write-Host "Push tag"
-git push origin $tag 2>&1
+git push origin $tag
 if (-not $?) { exit -1; } 
