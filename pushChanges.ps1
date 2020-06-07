@@ -28,6 +28,15 @@ if (-not $?) { Write-Host "ERROR!"; exit -1; }
 Write-Host "`n---"
 Write-Host "Push"
 git push origin 2>&1 | Write-Host
+
+if ($LASTEXITCODE -ne 0) { Write-Host "ERROR1!"; }
+if (-not $?) { Write-Host "ERROR2!"; }
+
+Write-Host $LASTEXITCODE
+Write-Host $?
+Write-Host $_
+
+
 if (-not $?) { Write-Host "ERROR!"; exit -1; } 
 
 Write-Host "`n---"
