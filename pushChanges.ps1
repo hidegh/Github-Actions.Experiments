@@ -18,7 +18,7 @@ git config user.email "[build@process.id]"
 Write-Host "---"
 Write-Host "Commit"
 git commit -a -m "Releasing $versionParameter"
-if (-not $?) { throw $_ } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE }
+if (-not $?) { throw } # if ($LASTEXITCODE -ne 0) { Write-Error $LASTEXITCODE }
 
 Write-Host "---"
 Write-Host "Push"
@@ -28,14 +28,14 @@ Write-Host $_
 Write-Host "b"
 if ($LASTEXITCODE -ne 0) { Write-Error "cccc" }
 
-if (-not $?) { throw $_ }
+if (-not $?) { throw }
 
 Write-Host "---"
 Write-Host "Add tag"
 git tag -a $tag -m "Tag for new release"
-if (-not $?) { throw $_ }
+if (-not $?) { throw }
 
 Write-Host "---"
 Write-Host "Push tag"
 git push origin $tag
-if (-not $?) { throw $_ }
+if (-not $?) { throw }
