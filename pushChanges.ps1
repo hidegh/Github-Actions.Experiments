@@ -42,7 +42,9 @@ Write-Host "Push tag"
 git push origin master $tag 2>&1 | Write-Host
 # The generic check-error code does not worked with push, raised error even on success!
 # if (-not $?) { Write-Host "ERROR!"; exit -1; } 
+if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; }
+if (-not $?) { Write-Host "ERROR!"; }
+
 Write-Host $LASTEXITCODE
 Write-Host $?
 Write-Host $_
-if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
