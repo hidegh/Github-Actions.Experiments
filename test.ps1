@@ -3,9 +3,9 @@ param(
   [string]$list = "test-list.txt"
 )
 
-Write-Host "`nRunning test projects..."
+Write-Host "Running test projects..."
 [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
   $project = $_
-  Write-Host "Project: $(${project})"
+  Write-Host "`n`n`nProject: $(${project})"
   dotnet test $project --configuration Release 2>&1 | Write-Host
 }
