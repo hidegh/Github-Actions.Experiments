@@ -1,1 +1,1 @@
-./Build-Test-Package-Deploy.Test
+./Build-Test-Package-Deploy.Tests
