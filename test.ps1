@@ -4,6 +4,7 @@ param(
 )
 
 Write-Host "Running test projects..."
+
 [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
   $project = $_
 

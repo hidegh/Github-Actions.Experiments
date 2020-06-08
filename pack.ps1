@@ -7,6 +7,7 @@ param(
 )
 
 Write-Host "Packaging NuGet from projects..."
+
 [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
   $project = $_
   $destination = "$($project)/$($nugetFolder)"
