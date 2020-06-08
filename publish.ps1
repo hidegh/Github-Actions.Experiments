@@ -16,4 +16,6 @@ Write-Host "Packaging NuGet from projects..."
 
   Write-Host "`n`n`nProject: $(${source})"
   find $source -name *.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate 2>&1 | Write-Host
+
+  if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
 }

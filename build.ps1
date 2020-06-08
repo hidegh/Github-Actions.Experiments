@@ -8,4 +8,5 @@ Write-Host "Building projects..."
   $project = $_
   Write-Host "`n`n`nProject: $(${project})"
   dotnet build $project --configuration Release 2>&1 | Write-Host
+  if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
 }
