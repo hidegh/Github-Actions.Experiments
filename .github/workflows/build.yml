@@ -30,7 +30,7 @@ jobs:
         run: powershell ./test.ps1
 
       - name: Pack
-        run: powershell ./pack.ps1
+        run: powershell ./pack.ps1 -nugetFolder $env:nugetFolder
 
       - name: Fetch status
         run: git status

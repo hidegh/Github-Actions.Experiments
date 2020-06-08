@@ -1,5 +1,5 @@
 param(
-  [Parameter(Mandatory=$true)]
+  [Parameter(Mandatory=$false)]
   [string]$list = "build-list.txt"
 )
 

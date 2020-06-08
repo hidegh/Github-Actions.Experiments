@@ -1,8 +1,8 @@
 param(
-  [Parameter(Mandatory=$true)]
+  [Parameter(Mandatory=$false)]
   [string]$list = "pack-list.txt"
   ,
-  [Parameter(Mandatory=$true)]
+  [Parameter(Mandatory=$false)]
   [string]$nugetFolder = "nupkg"
 )
 
