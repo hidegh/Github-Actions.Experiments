@@ -54,7 +54,7 @@ jobs:
       - name: Add TAG
         #- script: |
         #  git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION"
-        run: git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION"
+        run: git tag -a $env:VERSION_TAG -m "Tag for build $env:BUILDING_VERSION"
 
       - name: Push TAG
         run: git push origin $env:VERSION_TAG
