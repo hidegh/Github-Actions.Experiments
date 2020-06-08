@@ -1,5 +1,8 @@
 name: Version-build-test-package-tag-publish
 
+# note:
+# make sure you escape things correctly, a : inside a string parameter will evaluate to a YAML error (placeholder when refering parameters)
+
 on:
   push:
     branches: [ master ]
