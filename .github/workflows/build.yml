@@ -48,7 +48,7 @@ jobs:
         run: powershell ./publish.ps1 -nugetApiKey ${{ secrets.NUGET_API_KEY }} -nugetFolder $env:nugetFolder
 
       - name: Calculate TAG
-        run: powershell calculcateTag.ps1 -versionParameter $env:BUILDING_VERSION -prefix PROD
+        run: powershell calculateTag.ps1 -versionParameter $env:BUILDING_VERSION -prefix PROD
 
       - name: Add TAG
         run: git tag -a $env:VERSION_TAG # -m "Tag for build: $env:BUILDING_VERSION"
