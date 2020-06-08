@@ -50,7 +50,8 @@ jobs:
       - name: Calculate TAG
         run: powershell ./calculateTag.ps1 -versionParameter $env:BUILDING_VERSION -prefix "PROD-"
 
-      - name: Add TAG # direct call git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION" is considered as errorous!
+      # direct call git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION" is considered as errorous!
+      - name: Add TAG 
         - script: |
           git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION"
 
