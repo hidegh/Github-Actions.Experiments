@@ -6,11 +6,11 @@ param(
 Write-Host "Building projects..."
 
 [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
-  $project = $_
+  $source = $_
 
   Write-Host "`n`n`n"
-  Write-Host "Project: $(${project})"
+  Write-Host "Project: $(${source})"
 
-  dotnet build $project --configuration Release 2>&1 | Write-Host
+  dotnet build $source --configuration Release 2>&1 | Write-Host
   if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
 }

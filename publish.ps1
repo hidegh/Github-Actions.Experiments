@@ -15,11 +15,11 @@ param(
 Write-Host "Publishing NuGet from projects..."
 
 [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
-  $project = $_
-  $packageSourceFolder = "$($project)/$($nugetFolder)"
+  $source = $_
+  $packageSourceFolder = "$($source)/$($nugetFolder)"
 
   Write-Host "`n`n`n"
-  Write-Host "Project       : $(${project})"
+  Write-Host "Project       : $(${source})"
   Write-Host "Package folder: $(${packageSourceFolder})"
 
   # as *.nupkg does not works (in Github actions)

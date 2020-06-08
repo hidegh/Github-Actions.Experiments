@@ -9,11 +9,11 @@ param(
 Write-Host "Packaging NuGet from projects..."
 
 [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
-  $project = $_
-  $destination = "$($project)/$($nugetFolder)"
+  $source = $_
+  $destination = "$($source)/$($nugetFolder)"
 
   Write-Host "`n`n`n"
-  Write-Host "Project    : $(${project})"
+  Write-Host "Project    : $(${source})"
   Write-Host "NugetFolder: $(${destination})"
 
   dotnet pack $source --configuration Release -o $destination 2>&1 | Write-Host
