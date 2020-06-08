@@ -22,6 +22,10 @@ Write-Host "Publishing NuGet from projects..."
   Write-Host "Project       : $(${project})"
   Write-Host "Package folder: $(${packageSourceFolder})"
 
-  dotnet nuget push $packageSourceFolder/*.nupkg -s $nugetSource -k $nugetApiKey  --skip-duplicate 2>&1 | Write-Host
+  # as *.nupkg does not works (in Github actions)
+  # dotnet nuget push $packageSourceFolder/*.nupkg -s $nugetSource -k $nugetApiKey  --skip-duplicate 2>&1 | Write-Host
+
+  $nupkgFile = @(gci $packageSourceFolder/*.nupkg)[0].Name
+  dotnet nuget push $nupkgFile -s $nugetSource -k $nugetApiKey  --skip-duplicate 2>&1 | Write-Host
   if ($LASTEXITCODE -ne 0) { Write-Host "ERROR!"; exit -1; }
 }
