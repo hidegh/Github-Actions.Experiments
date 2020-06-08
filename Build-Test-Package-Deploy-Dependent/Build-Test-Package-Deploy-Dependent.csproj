@@ -5,7 +5,6 @@
     <RootNamespace>Build_Test_Package_Deploy_Dependent</RootNamespace>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Description>This is just a sample package, not intended for production use. It's sole existence is just to show the functionality of the GitHub YAML workflow on versioning, building, testing, packaging and publishing mutliple NuGet's when code is pushed to master.</Description>
-    <Version>1.0.53.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
