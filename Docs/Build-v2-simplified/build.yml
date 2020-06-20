@@ -23,14 +23,11 @@ jobs:
       - name: Increment version
         run: powershell ./incrementVersion.ps1
 
-      - name: Print out new version via script
-        run: powershell ./showVersion.ps1 -versionParameter $env:BUILDING_VERSION
-
       - name: Build
-        run: powershell ./build.ps1
+        run: dotnet build --configuration Release
 
-      - name: Test
-        run: powershell ./test.ps1
+      - name: Run unit tests
+        run: dotnet test --configuration Release
 
       - name: Pack
         run: powershell ./pack.ps1 -nugetFolder $env:nugetFolder
@@ -53,10 +50,7 @@ jobs:
       - name: Calculate TAG
         run: powershell ./calculateTag.ps1 -versionParameter $env:BUILDING_VERSION -prefix "PROD-"
 
-      # direct call git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION" is considered as errorous!
       - name: Add TAG
-        #- script: |
-        #  git tag -a $env:VERSION_TAG -m "Tag for build: $env:BUILDING_VERSION"
         run: git tag -a $env:VERSION_TAG -m "Tag for build $env:BUILDING_VERSION"
 
       - name: Push TAG
