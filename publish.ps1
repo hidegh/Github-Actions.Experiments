@@ -14,7 +14,23 @@ param(
 
 Write-Host "Publishing NuGet from projects..."
 
-[System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" } | ForEach-Object {
+$fileExists = [System.IO.File]::Exists($list)
+if (-not $fileExists)
+{ 
+  Write-Host "File '${list}' does not exists, can't continue publishing."
+  Write-Host "ERROR!";
+  exit -1;
+}
+
+$lines = [System.IO.File]::ReadLines($list) | ? {$_.trim() -ne "" }
+
+if ($lines.Length -eq 0) {
+  Write-Host "No project(s) listed in file '${list}', can't continue publishing."
+  Write-Host "ERROR!";
+  exit -1;
+}
+
+$lines | ForEach-Object {
   $source = $_
   $packageSourceFolder = "$($source)/$($nugetFolder)"
 
