@@ -4,6 +4,7 @@ name: Version-build-test-package-tag-publish
 # make sure you escape things correctly, a : inside a string parameter will evaluate to a YAML error (placeholder when refering parameters)
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
 
